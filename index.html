@@ -92,7 +92,7 @@
             <!-- Desktop Menu Links -->
             <nav class="hidden xl:flex items-center gap-6 text-sm font-semibold text-stone-600">
                 <button onclick="switchTab('home')" class="hover:text-amber-600 transition">Home</button>
-                <button onclick="navigateToRewards()"
+                <button onclick="switchTab('rewards')"
                     class="hover:text-amber-600 transition flex items-center gap-1.5 font-bold"> Rewards
                 </button>
                 <button onclick="switchTab('leaderboard')" class="hover:text-amber-600 transition">Leaderboard</button>
@@ -130,7 +130,7 @@
             class="hidden xl:hidden bg-white border-b border-stone-200 px-4 pt-2 pb-4 space-y-2 shadow-lg">
             <button onclick="switchTab('home'); toggleMobileMenu()"
                 class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Home</button>
-            <button onclick="navigateToRewards(); toggleMobileMenu()"
+            <button onclick="switchTab('rewards'); toggleMobileMenu()"
                 class="block w-full text-left px-3 py-2 rounded-lg font-bold hover:bg-amber-50">
                 Rescue Rewards
             </button>
@@ -169,8 +169,8 @@
                         </div>
 
                         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-                            Every Rescue Deserves a <span class="gradient-text-emerald">Story.</span><br>
-                            Every Story Deserves a <span class="gradient-text-amber">Future.</span>
+                            Every Rescue Deserves a <span class="gradient-logo-green">Story.</span><br>
+                            Every Story Deserves a <span class="gradient-logo-amber">Future.</span>
                         </h1>
 
                         <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
@@ -189,7 +189,7 @@
                         <!-- Hero CTAs -->
                         <div class="flex flex-wrap items-center gap-4 pt-4">
                             <button onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })"
-                                class="bg-white hover:bg-gray-100 text-emerald-950 px-6 py-3 rounded-full font-bold text-sm transition flex items-center gap-2 shadow-lg">
+                                class="bg-amber-500 hover:bg-amber-600  text-emerald-950 px-6 py-3 rounded-full font-bold text-sm transition flex items-center gap-2 shadow-lg">
                                 See How It Works <i class="fa-solid fa-arrow-right text-xs"></i>
                             </button>
                             <button onclick="switchTab('login')"
@@ -505,148 +505,7 @@
             </section>
 
             <!-- RESCUE REWARDS & BADGES SECTION -->
-            <!-- RESCUE REWARDS & PROGRESS SECTION -->
-            <section id="rewards" class="hero-dark-bg text-white py-20" data-aos="fade-up">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-                    <div class="text-center max-w-3xl mx-auto space-y-3">
-                        <span
-                            class="bg-amber-400/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/30">
-                            Gamification & Recognition
-                        </span>
-                        <h2 class="text-3xl sm:text-4xl font-black">Rescue Reward Points</h2>
-                        <p class="text-stone-300 text-base">Earn points for every action on the platform and climb the
-                            community
-                            leaderboard[cite: 1].</p>
-                    </div>
 
-                    <!-- USER PROGRESS & TIERS -->
-                    <div
-                        class="bg-white/10 backdrop-blur-md border border-white/10 p-6 sm:p-8 rounded-3xl space-y-6 max-w-4xl mx-auto">
-                        <div
-                            class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-white/10 pb-6">
-                            <div>
-                                <span class="text-xs font-semibold text-stone-300 uppercase tracking-wider">Your Impact
-                                    Status</span>
-                                <h3 class="text-2xl font-extrabold text-white mt-0.5">Current Tier: <span
-                                        class="text-amber-400" id="userTierName">Hero</span></h3>
-                            </div>
-                            <div
-                                class="bg-amber-400/20 text-amber-300 border border-amber-400/30 px-5 py-2 rounded-2xl text-right">
-                                <span class="text-xs block text-stone-300">Total Points</span>
-                                <span class="text-2xl font-black" id="userPointsDisplay">1450 pts</span>
-                            </div>
-                        </div>
-
-                        <!-- Progress Bar -->
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-xs font-semibold text-stone-300">
-                                <span>Progress to Life Saver Tier</span>
-                                <span>1,450 / 2,000 pts</span>
-                            </div>
-                            <div
-                                class="w-full bg-emerald-950/80 rounded-full h-3 overflow-hidden border border-white/10">
-                                <div class="bg-gradient-to-r from-emerald-400 to-amber-400 h-3 rounded-full"
-                                    style="width: 72.5%">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tier Badges Cards -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                            <div class="bg-white/5 border border-amber-400/40 p-4 rounded-2xl text-center space-y-1">
-                                <i class="fa-solid fa-shield-cat text-2xl text-amber-400"></i>
-                                <h4 class="font-bold text-sm text-white">Hero</h4>
-                                <p class="text-xs text-amber-300 font-mono">0 - 2,000 pts</p>
-                            </div>
-                            <div
-                                class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center space-y-1 opacity-70">
-                                <i class="fa-solid fa-heart-pulse text-2xl text-emerald-400"></i>
-                                <h4 class="font-bold text-sm text-white">Life Saver</h4>
-                                <p class="text-xs text-stone-300 font-mono">2,001 - 5,000 pts</p>
-                            </div>
-                            <div
-                                class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center space-y-1 opacity-70">
-                                <i class="fa-solid fa-award text-2xl text-amber-300"></i>
-                                <h4 class="font-bold text-sm text-white">Guardian</h4>
-                                <p class="text-xs text-stone-300 font-mono">5,001+ pts</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- AVAILABLE REWARDS REDEMPTION LIST -->
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-bold text-center text-amber-300">Available Point Rewards</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <!-- Reward Item 1 -->
-                            <div
-                                class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex flex-col justify-between space-y-4">
-                                <div class="space-y-2">
-                                    <div
-                                        class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl shadow-lg">
-                                        <i class="fa-solid fa-note-sticky"></i>
-                                    </div>
-                                    <h4 class="font-bold text-lg text-white">Exclusive Sticker Pack</h4>
-                                    <p class="text-xs text-stone-300">High-quality vinyl rescue awareness stickers sent
-                                        to your
-                                        address.</p>
-                                </div>
-                                <div class="pt-4 border-t border-white/10 flex justify-between items-center">
-                                    <span class="font-black text-amber-400">500 pts</span>
-                                    <button onclick="redeemReward('Exclusive Sticker Pack', 500)"
-                                        class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-4 py-1.5 rounded-xl font-bold text-xs shadow-md transition">
-                                        Redeem
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Reward Item 2 -->
-                            <div
-                                class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex flex-col justify-between space-y-4">
-                                <div class="space-y-2">
-                                    <div
-                                        class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl shadow-lg">
-                                        <i class="fa-solid fa-shirt"></i>
-                                    </div>
-                                    <h4 class="font-bold text-lg text-white">Life After Rescue T-Shirt</h4>
-                                    <p class="text-xs text-stone-300">Official branded cotton T-shirt for active
-                                        volunteers and
-                                        supporters.</p>
-                                </div>
-                                <div class="pt-4 border-t border-white/10 flex justify-between items-center">
-                                    <span class="font-black text-amber-400">1,500 pts</span>
-                                    <button onclick="redeemReward('Official T-Shirt', 1500)"
-                                        class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-4 py-1.5 rounded-xl font-bold text-xs shadow-md transition">
-                                        Redeem
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Reward Item 3 -->
-                            <div
-                                class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex flex-col justify-between space-y-4">
-                                <div class="space-y-2">
-                                    <div
-                                        class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl shadow-lg">
-                                        <i class="fa-solid fa-bowl-food"></i>
-                                    </div>
-                                    <h4 class="font-bold text-lg text-white">Sponsor an Animal (1 Day)</h4>
-                                    <p class="text-xs text-stone-300">Covers full food and basic medical costs for a
-                                        shelter animal
-                                        for a day.</p>
-                                </div>
-                                <div class="pt-4 border-t border-white/10 flex justify-between items-center">
-                                    <span class="font-black text-amber-400">3,000 pts</span>
-                                    <button onclick="redeemReward('Animal Sponsorship', 3000)"
-                                        class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-4 py-1.5 rounded-xl font-bold text-xs shadow-md transition">
-                                        Redeem
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
         </section>
 
         <!-- 2. LOGIN / REGISTRATION TAB -->
@@ -1049,6 +908,146 @@
                     </p>
                     <p class="text-xs text-gray-400 mt-2">App Version 1.0.0</p>
                 </div>
+            </div>
+        </section>
+        <!-- <section id="rewards" class="tab-content max-w-md mx-auto p-4 mt-8" data-aos="fade-up">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-stone-200 space-y-8"> -->
+        <section id="rewards" class="tab-content max-w-6xl mx-auto p-4" data-aos="fade-up">
+            <div class="hero-dark-bg bg-white p-6 rounded-xl shadow-md border border-stone-200 space-y-8">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span
+                        class="bg-amber-400/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/30">
+                        Gamification & Recognition
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white">Rescue Reward Points</h2>
+                    <p class="text-stone-300 text-base">Earn points for every action on the platform and climb the
+                        community
+                        leaderboard[cite: 1].</p>
+                </div>
+
+                <!-- USER PROGRESS & TIERS -->
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/10 p-6 sm:p-8 rounded-3xl space-y-6 max-w-4xl mx-auto">
+                    <div
+                        class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-white/10 pb-6">
+                        <div>
+                            <span class="text-xs font-semibold text-stone-300 uppercase tracking-wider">Your Impact
+                                Status</span>
+                            <h3 class="text-2xl font-extrabold text-white mt-0.5">Current Tier: <span
+                                    class="text-amber-400" id="userTierName">Hero</span></h3>
+                        </div>
+                        <div
+                            class="bg-amber-400/20 text-amber-300 border border-amber-400/30 px-5 py-2 rounded-2xl text-right">
+                            <span class="text-xs block text-stone-300">Total Points</span>
+                            <span class="text-2xl font-black" id="userPointsDisplay">1450 pts</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-semibold text-stone-300">
+                            <span>Progress to Life Saver Tier</span>
+                            <span>1,450 / 2,000 pts</span>
+                        </div>
+                        <div class="w-full bg-emerald-950/80 rounded-full h-3 overflow-hidden border border-white/10">
+                            <div class="bg-gradient-to-r from-emerald-400 to-amber-400 h-3 rounded-full"
+                                style="width: 72.5%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tier Badges Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-white/5 border border-amber-400/40 p-4 rounded-2xl text-center space-y-1">
+                            <i class="fa-solid fa-shield-cat text-2xl text-amber-400"></i>
+                            <h4 class="font-bold text-sm text-white">Hero</h4>
+                            <p class="text-xs text-amber-300 font-mono">0 - 2,000 pts</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center space-y-1 opacity-70">
+                            <i class="fa-solid fa-heart-pulse text-2xl text-emerald-400"></i>
+                            <h4 class="font-bold text-sm text-white">Life Saver</h4>
+                            <p class="text-xs text-stone-300 font-mono">2,001 - 5,000 pts</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center space-y-1 opacity-70">
+                            <i class="fa-solid fa-award text-2xl text-amber-300"></i>
+                            <h4 class="font-bold text-sm text-white">Guardian</h4>
+                            <p class="text-xs text-stone-300 font-mono">5,001+ pts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AVAILABLE REWARDS REDEMPTION LIST -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-center text-amber-300">Available Point Rewards</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Reward Item 1 -->
+                        <div
+                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex flex-col justify-between space-y-4">
+                            <div class="space-y-2">
+                                <div
+                                    class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl shadow-lg">
+                                    <i class="fa-solid fa-note-sticky"></i>
+                                </div>
+                                <h4 class="font-bold text-lg text-white">Exclusive Sticker Pack</h4>
+                                <p class="text-xs text-stone-300">High-quality vinyl rescue awareness stickers sent
+                                    to your
+                                    address.</p>
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                                <span class="font-black text-amber-400">500 pts</span>
+                                <button onclick="redeemReward('Exclusive Sticker Pack', 500)"
+                                    class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-4 py-1.5 rounded-xl font-bold text-xs shadow-md transition">
+                                    Redeem
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Reward Item 2 -->
+                        <div
+                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex flex-col justify-between space-y-4">
+                            <div class="space-y-2">
+                                <div
+                                    class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl shadow-lg">
+                                    <i class="fa-solid fa-shirt"></i>
+                                </div>
+                                <h4 class="font-bold text-lg text-white">Life After Rescue T-Shirt</h4>
+                                <p class="text-xs text-stone-300">Official branded cotton T-shirt for active
+                                    volunteers and
+                                    supporters.</p>
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                                <span class="font-black text-amber-400">1,500 pts</span>
+                                <button onclick="redeemReward('Official T-Shirt', 1500)"
+                                    class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-4 py-1.5 rounded-xl font-bold text-xs shadow-md transition">
+                                    Redeem
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Reward Item 3 -->
+                        <div
+                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex flex-col justify-between space-y-4">
+                            <div class="space-y-2">
+                                <div
+                                    class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl shadow-lg">
+                                    <i class="fa-solid fa-bowl-food"></i>
+                                </div>
+                                <h4 class="font-bold text-lg text-white">Sponsor an Animal (1 Day)</h4>
+                                <p class="text-xs text-stone-300">Covers full food and basic medical costs for a
+                                    shelter animal
+                                    for a day.</p>
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                                <span class="font-black text-amber-400">3,000 pts</span>
+                                <button onclick="redeemReward('Animal Sponsorship', 3000)"
+                                    class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-4 py-1.5 rounded-xl font-bold text-xs shadow-md transition">
+                                    Redeem
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
