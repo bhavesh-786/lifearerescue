@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         .tab-content {
             display: none;
@@ -16,6 +17,25 @@
 
         .tab-content.active {
             display: block;
+        }
+    </style>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.15), transparent 50%),
+                radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.1), transparent 50%);
+        }
+
+        #map {
+            height: 450px;
+            width: 100%;
+            border-radius: 1rem;
+            z-index: 10;
         }
     </style>
 </head>
@@ -368,6 +388,130 @@
                     </div>
                 </div>
             </section>
+
+            <!-- LIVE RESCUE MAP SECTION -->
+            <section id="rescue-map" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div>
+                            <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-widest">Live
+                                Incident
+                                Tracking</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-1">Active Rescue Map</h2>
+                            <p class="text-gray-500 text-sm">Real-time GPS locations of reported animals and nearby
+                                shelters[cite:
+                                1].</p>
+                        </div>
+                        <button onclick="getLocation()"
+                            class="bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 transition">
+                            <i class="fa-solid fa-crosshairs"></i> Locate Me
+                        </button>
+                    </div>
+
+                    <!-- Interactive Map Container -->
+                    <div id="map" class="shadow-inner border border-gray-200"></div>
+                </div>
+            </section>
+
+            <!-- RESCUE REWARDS & BADGES SECTION (GAMIFICATION) -->
+            <section id="rewards"
+                class="bg-gradient-to-br from-emerald-900 via-teal-900 to-emerald-950 text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+                    <div class="text-center max-w-3xl mx-auto space-y-3">
+                        <span
+                            class="bg-amber-400/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/30">
+                            Gamification & Recognition
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-black">Rescue Reward Points</h2>
+                        <p class="text-emerald-200 text-base">Earn points for every action on the platform and climb the
+                            community
+                            leaderboard[cite: 1].</p>
+                    </div>
+
+                    <!-- Reward System Table / Points Breakdown -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div
+                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3">
+                            <div
+                                class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
+                                +10
+                            </div>
+                            <h4 class="font-bold text-lg text-white">Report Case</h4>
+                            <p class="text-xs text-emerald-200">Submit a new stray or injured animal report with GPS
+                                photo[cite: 1].
+                            </p>
+                        </div>
+
+                        <div
+                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3">
+                            <div
+                                class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
+                                +50
+                            </div>
+                            <h4 class="font-bold text-lg text-white">Successful Rescue</h4>
+                            <p class="text-xs text-emerald-200">NGO or rescuer accepts and secures the animal[cite: 1].
+                            </p>
+                        </div>
+
+                        <div
+                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3">
+                            <div
+                                class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
+                                +15
+                            </div>
+                            <h4 class="font-bold text-lg text-white">Medical Update</h4>
+                            <p class="text-xs text-emerald-200">Post timely health notes or surgery updates[cite: 1].
+                            </p>
+                        </div>
+
+                        <div
+                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3">
+                            <div
+                                class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
+                                +100
+                            </div>
+                            <h4 class="font-bold text-lg text-white">Adopt Animal</h4>
+                            <p class="text-xs text-emerald-200">Provide a permanent home for a recovered animal[cite:
+                                1].</p>
+                        </div>
+                    </div>
+
+                    <!-- Badges Showcase -->
+                    <div class="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-6">
+                        <h3 class="text-xl font-bold text-center text-amber-300">Earnable Public Badges</h3>
+                        <div class="flex flex-wrap justify-center gap-6">
+                            <div
+                                class="flex items-center gap-3 bg-white/10 px-5 py-3 rounded-2xl border border-white/10">
+                                <i class="fa-solid fa-shield-cat text-2xl text-amber-400"></i>
+                                <div>
+                                    <p class="font-bold text-sm">Rescue Hero</p>
+                                    <p class="text-[10px] text-emerald-200">50+ Rescues Completed</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-center gap-3 bg-white/10 px-5 py-3 rounded-2xl border border-white/10">
+                                <i class="fa-solid fa-award text-2xl text-yellow-300"></i>
+                                <div>
+                                    <p class="font-bold text-sm">Gold Donor</p>
+                                    <p class="text-[10px] text-emerald-200">Top Monthly Contributor</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-center gap-3 bg-white/10 px-5 py-3 rounded-2xl border border-white/10">
+                                <i class="fa-solid fa-heart-pulse text-2xl text-red-400"></i>
+                                <div>
+                                    <p class="font-bold text-sm">Lifesaver</p>
+                                    <p class="text-[10px] text-emerald-200">Critical Medical Sponsor</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
         </section>
 
         <!-- 2. LOGIN / REGISTRATION TAB -->
@@ -656,6 +800,13 @@
 
     </main>
 
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-center text-gray-500">
+            © 2026 Life After Rescue. Built for global animal welfare impact[cite: 1].
+        </div>
+    </footer>
+
     <!-- MOBILE BOTTOM NAVIGATION -->
     <nav class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t flex justify-around py-2 z-50">
         <button onclick="switchTab('home')" class="text-gray-600 hover:text-emerald-600 text-center"><i
@@ -669,9 +820,46 @@
         <button onclick="switchTab('profile')" class="text-gray-600 hover:text-emerald-600 text-center"><i
                 class="fa-solid fa-user block text-lg"></i><span class="text-[10px]">Profile</span></button>
     </nav>
-
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- APP NAVIGATION JAVASCRIPT -->
     <script>
+
+        // Initialize Map centered on Jaipur, Rajasthan
+        const map = L.map('map').setView([26.9124, 75.7873], 12);
+
+        // Load OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Sample Rescue Markers
+        const rescues = [
+            { lat: 26.9124, lng: 75.7873, title: "Rocky (Injured Dog)", status: "Recovering" },
+            { lat: 26.9220, lng: 75.8000, title: "Milo (Abandoned Cat)", status: "Ready for Adoption" },
+            { lat: 26.8900, lng: 75.7500, title: "Injured Cow Alert", status: "Critical Emergency" }
+        ];
+
+        rescues.forEach(item => {
+            L.marker([item.lat, item.lng])
+                .addTo(map)
+                .bindPopup(`<b>${item.title}</b><br>Status: ${item.status}`);
+        });
+
+        // Get User Location function
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    map.setView([lat, lng], 14);
+                    L.marker([lat, lng]).addTo(map).bindPopup("<b>Your Current Location</b>").openPopup();
+                });
+            } else {
+                alert("Geolocation is not supported by your browser.");
+            }
+        }
+
         function switchTab(tabId) {
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
