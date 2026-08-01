@@ -89,11 +89,14 @@
                     After Rescue</span>
             </button>
 
-            <!-- Desktop Menu Links (Auto-Hides on Smaller Screens to Prevent Overflow) -->
+            <!-- Desktop Menu Links -->
             <nav class="hidden xl:flex items-center gap-6 text-sm font-semibold text-stone-600">
                 <button onclick="switchTab('home')" class="hover:text-amber-600 transition">Home</button>
+                <button onclick="navigateToRewards()"
+                    class="hover:text-amber-600 transition flex items-center gap-1.5 font-bold"> Rewards
+                </button>
                 <button onclick="switchTab('leaderboard')" class="hover:text-amber-600 transition">Leaderboard</button>
-                <button onclick="switchTab('search')" class="hover:text-amber-600 transition">Search</button>
+                <button onclick="switchTab('search')" class="hover:text-amber-600 transition">Shop & NGOs</button>
                 <button onclick="switchTab('wishlist')" class="hover:text-amber-600 transition">Wishlist</button>
                 <button onclick="switchTab('chat')" class="hover:text-amber-600 transition">Chat</button>
                 <button onclick="switchTab('profile')" class="hover:text-amber-600 transition">Profile</button>
@@ -114,9 +117,9 @@
                     Login
                 </button>
 
-                <!-- Mobile Hamburger Toggle Button -->
+                <!-- Mobile Hamburger Button -->
                 <button onclick="toggleMobileMenu()"
-                    class="xl:hidden p-2 rounded-lg text-emerald-950 hover:bg-stone-100 text-xl focus:outline-none hideButton">
+                    class="xl:hidden p-2 rounded-lg text-emerald-950 hover:bg-stone-100 text-xl focus:outline-none">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -127,10 +130,15 @@
             class="hidden xl:hidden bg-white border-b border-stone-200 px-4 pt-2 pb-4 space-y-2 shadow-lg">
             <button onclick="switchTab('home'); toggleMobileMenu()"
                 class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Home</button>
+            <button onclick="navigateToRewards(); toggleMobileMenu()"
+                class="block w-full text-left px-3 py-2 rounded-lg font-bold hover:bg-amber-50">
+                Rescue Rewards
+            </button>
             <button onclick="switchTab('leaderboard'); toggleMobileMenu()"
                 class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Leaderboard</button>
             <button onclick="switchTab('search'); toggleMobileMenu()"
-                class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Search</button>
+                class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Shop
+                & NGOs</button>
             <button onclick="switchTab('wishlist'); toggleMobileMenu()"
                 class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Wishlist</button>
             <button onclick="switchTab('chat'); toggleMobileMenu()"
@@ -497,7 +505,8 @@
             </section>
 
             <!-- RESCUE REWARDS & BADGES SECTION -->
-            <section id="rewards" class="hero-dark-bg  text-white py-20" data-aos="fade-up">
+            <!-- RESCUE REWARDS & PROGRESS SECTION -->
+            <section id="rewards" class="hero-dark-bg text-white py-20" data-aos="fade-up">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
                     <div class="text-center max-w-3xl mx-auto space-y-3">
                         <span
@@ -505,87 +514,137 @@
                             Gamification & Recognition
                         </span>
                         <h2 class="text-3xl sm:text-4xl font-black">Rescue Reward Points</h2>
-                        <p class="text-emerald-200 text-base">Earn points for every action on the platform and climb the
-                            community leaderboard[cite: 1].</p>
+                        <p class="text-stone-300 text-base">Earn points for every action on the platform and climb the
+                            community
+                            leaderboard[cite: 1].</p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3"
-                            data-aos="flip-left" data-aos-delay="100">
-                            <div
-                                class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
-                                +10
+                    <!-- USER PROGRESS & TIERS -->
+                    <div
+                        class="bg-white/10 backdrop-blur-md border border-white/10 p-6 sm:p-8 rounded-3xl space-y-6 max-w-4xl mx-auto">
+                        <div
+                            class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-white/10 pb-6">
+                            <div>
+                                <span class="text-xs font-semibold text-stone-300 uppercase tracking-wider">Your Impact
+                                    Status</span>
+                                <h3 class="text-2xl font-extrabold text-white mt-0.5">Current Tier: <span
+                                        class="text-amber-400" id="userTierName">Hero</span></h3>
                             </div>
-                            <h4 class="font-bold text-lg text-white">Report Case</h4>
-                            <p class="text-xs text-emerald-200">Submit a new stray or injured animal report with GPS
-                                photo[cite: 1].</p>
+                            <div
+                                class="bg-amber-400/20 text-amber-300 border border-amber-400/30 px-5 py-2 rounded-2xl text-right">
+                                <span class="text-xs block text-stone-300">Total Points</span>
+                                <span class="text-2xl font-black" id="userPointsDisplay">1450 pts</span>
+                            </div>
                         </div>
 
-                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3"
-                            data-aos="flip-left" data-aos-delay="200">
-                            <div
-                                class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
-                                +50
+                        <!-- Progress Bar -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs font-semibold text-stone-300">
+                                <span>Progress to Life Saver Tier</span>
+                                <span>1,450 / 2,000 pts</span>
                             </div>
-                            <h4 class="font-bold text-lg text-white">Successful Rescue</h4>
-                            <p class="text-xs text-emerald-200">NGO or rescuer accepts and secures the animal[cite: 1].
-                            </p>
+                            <div
+                                class="w-full bg-emerald-950/80 rounded-full h-3 overflow-hidden border border-white/10">
+                                <div class="bg-gradient-to-r from-emerald-400 to-amber-400 h-3 rounded-full"
+                                    style="width: 72.5%">
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3"
-                            data-aos="flip-left" data-aos-delay="300">
-                            <div
-                                class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
-                                +15
-                            </div>
-                            <h4 class="font-bold text-lg text-white">Medical Update</h4>
-                            <p class="text-xs text-emerald-200">Post timely health notes or surgery updates[cite: 1].
-                            </p>
-                        </div>
-
-                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3"
-                            data-aos="flip-left" data-aos-delay="400">
-                            <div
-                                class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
-                                +100
-                            </div>
-                            <h4 class="font-bold text-lg text-white">Adopt Animal</h4>
-                            <p class="text-xs text-emerald-200">Provide a permanent home for a recovered animal[cite:
-                                1].</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-6" data-aos="zoom-in">
-                        <h3 class="text-xl font-bold text-center text-amber-300">Earnable Public Badges</h3>
-                        <div class="flex flex-wrap justify-center gap-6">
-                            <div
-                                class="flex items-center gap-3 bg-white/10 px-5 py-3 rounded-2xl border border-white/10">
+                        <!-- Tier Badges Cards -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                            <div class="bg-white/5 border border-amber-400/40 p-4 rounded-2xl text-center space-y-1">
                                 <i class="fa-solid fa-shield-cat text-2xl text-amber-400"></i>
-                                <div>
-                                    <p class="font-bold text-sm">Rescue Hero</p>
-                                    <p class="text-[10px] text-emerald-200">50+ Rescues Completed</p>
+                                <h4 class="font-bold text-sm text-white">Hero</h4>
+                                <p class="text-xs text-amber-300 font-mono">0 - 2,000 pts</p>
+                            </div>
+                            <div
+                                class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center space-y-1 opacity-70">
+                                <i class="fa-solid fa-heart-pulse text-2xl text-emerald-400"></i>
+                                <h4 class="font-bold text-sm text-white">Life Saver</h4>
+                                <p class="text-xs text-stone-300 font-mono">2,001 - 5,000 pts</p>
+                            </div>
+                            <div
+                                class="bg-white/5 border border-white/10 p-4 rounded-2xl text-center space-y-1 opacity-70">
+                                <i class="fa-solid fa-award text-2xl text-amber-300"></i>
+                                <h4 class="font-bold text-sm text-white">Guardian</h4>
+                                <p class="text-xs text-stone-300 font-mono">5,001+ pts</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AVAILABLE REWARDS REDEMPTION LIST -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-center text-amber-300">Available Point Rewards</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Reward Item 1 -->
+                            <div
+                                class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex flex-col justify-between space-y-4">
+                                <div class="space-y-2">
+                                    <div
+                                        class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl shadow-lg">
+                                        <i class="fa-solid fa-note-sticky"></i>
+                                    </div>
+                                    <h4 class="font-bold text-lg text-white">Exclusive Sticker Pack</h4>
+                                    <p class="text-xs text-stone-300">High-quality vinyl rescue awareness stickers sent
+                                        to your
+                                        address.</p>
+                                </div>
+                                <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                                    <span class="font-black text-amber-400">500 pts</span>
+                                    <button onclick="redeemReward('Exclusive Sticker Pack', 500)"
+                                        class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-4 py-1.5 rounded-xl font-bold text-xs shadow-md transition">
+                                        Redeem
+                                    </button>
                                 </div>
                             </div>
 
+                            <!-- Reward Item 2 -->
                             <div
-                                class="flex items-center gap-3 bg-white/10 px-5 py-3 rounded-2xl border border-white/10">
-                                <i class="fa-solid fa-award text-2xl text-yellow-300"></i>
-                                <div>
-                                    <p class="font-bold text-sm">Gold Donor</p>
-                                    <p class="text-[10px] text-emerald-200">Top Monthly Contributor</p>
+                                class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex flex-col justify-between space-y-4">
+                                <div class="space-y-2">
+                                    <div
+                                        class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl shadow-lg">
+                                        <i class="fa-solid fa-shirt"></i>
+                                    </div>
+                                    <h4 class="font-bold text-lg text-white">Life After Rescue T-Shirt</h4>
+                                    <p class="text-xs text-stone-300">Official branded cotton T-shirt for active
+                                        volunteers and
+                                        supporters.</p>
+                                </div>
+                                <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                                    <span class="font-black text-amber-400">1,500 pts</span>
+                                    <button onclick="redeemReward('Official T-Shirt', 1500)"
+                                        class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-4 py-1.5 rounded-xl font-bold text-xs shadow-md transition">
+                                        Redeem
+                                    </button>
                                 </div>
                             </div>
 
+                            <!-- Reward Item 3 -->
                             <div
-                                class="flex items-center gap-3 bg-white/10 px-5 py-3 rounded-2xl border border-white/10">
-                                <i class="fa-solid fa-heart-pulse text-2xl text-red-400"></i>
-                                <div>
-                                    <p class="font-bold text-sm">Lifesaver</p>
-                                    <p class="text-[10px] text-emerald-200">Critical Medical Sponsor</p>
+                                class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex flex-col justify-between space-y-4">
+                                <div class="space-y-2">
+                                    <div
+                                        class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl shadow-lg">
+                                        <i class="fa-solid fa-bowl-food"></i>
+                                    </div>
+                                    <h4 class="font-bold text-lg text-white">Sponsor an Animal (1 Day)</h4>
+                                    <p class="text-xs text-stone-300">Covers full food and basic medical costs for a
+                                        shelter animal
+                                        for a day.</p>
+                                </div>
+                                <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                                    <span class="font-black text-amber-400">3,000 pts</span>
+                                    <button onclick="redeemReward('Animal Sponsorship', 3000)"
+                                        class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-4 py-1.5 rounded-xl font-bold text-xs shadow-md transition">
+                                        Redeem
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </section>
         </section>
@@ -738,40 +797,159 @@
         </section>
 
         <!-- 5. SEARCH -->
-        <section id="search" class="tab-content max-w-4xl mx-auto p-4 mt-8" data-aos="fade-up">
-            <div class="bg-white p-6 rounded-xl shadow-md">
-                <h2 class="text-xl font-bold text-gray-800 mb-3">
-                    <i class="fa-solid fa-magnifying-glass text-emerald-600"></i> Search NGOs & Products
-                </h2>
-                <div class="flex gap-2 mb-4">
-                    <input type="text" placeholder="Search NGOs, pet food, first aid products..."
-                        class="w-full p-2 border rounded-lg">
-                    <button class="bg-emerald-600 text-white px-4 rounded-lg font-bold">Search</button>
-                </div>
+        <!-- 5. SHOP & NGO SEARCH -->
+        <section id="search" class="tab-content max-w-6xl mx-auto p-4" data-aos="fade-up">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-stone-200 space-y-8">
 
-                <h3 class="font-bold text-gray-700 mt-4 mb-2">Verified Animal NGOs</h3>
-                <div class="p-3 border rounded-lg flex justify-between items-center mb-3">
+                <!-- Section Title & Cart Indicator -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b pb-4">
                     <div>
-                        <p class="font-bold text-gray-800">Hope For Strays Foundation</p>
-                        <p class="text-xs text-gray-500">New Delhi • Verified NGO</p>
+                        <h2 class="text-2xl font-bold text-emerald-950 flex items-center gap-2">
+                            <i class="fa-solid fa-store text-amber-600"></i> Rescue Shop & NGO Directory
+                        </h2>
+                        <p class="text-xs text-stone-500">Purchase pet supplies or connect with verified shelters.</p>
                     </div>
-                    <button onclick="switchTab('chat')"
-                        class="text-xs bg-emerald-100 text-emerald-700 font-bold px-3 py-1 rounded">Contact NGO</button>
+                    <div
+                        class="bg-emerald-50 text-emerald-900 border border-emerald-200 px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-cart-shopping text-amber-600"></i> Cart: <span id="cartCount">0</span>
+                        Items
+                    </div>
                 </div>
 
-                <h3 class="font-bold text-gray-700 mt-6 mb-2">Rescue Products</h3>
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="p-3 border rounded-lg text-center">
-                        <i class="fa-solid fa-kit-medical text-3xl text-red-500 my-2"></i>
-                        <p class="font-bold text-sm">Emergency Rescue Kit</p>
-                        <p class="text-xs text-emerald-600 font-bold">₹1,200</p>
+                <!-- NGO Directory Search Box -->
+                <div class="bg-stone-50 p-4 rounded-xl border border-stone-200 space-y-3">
+                    <h3 class="font-bold text-stone-700 text-sm">Verified NGO Directory</h3>
+                    <div class="flex gap-2">
+                        <input type="text" placeholder="Search NGOs by name or city..."
+                            class="w-full p-2 border rounded-lg text-sm">
+                        <button class="bg-emerald-900 text-amber-400 px-4 rounded-lg font-bold text-sm">Search</button>
                     </div>
-                    <div class="p-3 border rounded-lg text-center">
-                        <i class="fa-solid fa-bowl-food text-3xl text-amber-500 my-2"></i>
-                        <p class="font-bold text-sm">Rescue Dog Food Pack</p>
-                        <p class="text-xs text-emerald-600 font-bold">₹850</p>
+                    <div class="p-3 bg-white border rounded-lg flex justify-between items-center mt-2">
+                        <div>
+                            <p class="font-bold text-stone-800 text-sm">Hope For Strays Foundation</p>
+                            <p class="text-xs text-stone-500">New Delhi • Verified NGO</p>
+                        </div>
+                        <button onclick="switchTab('chat')"
+                            class="text-xs bg-amber-100 text-amber-900 font-bold px-3 py-1.5 rounded">Contact
+                            NGO</button>
                     </div>
                 </div>
+
+                <!-- SHOP SECTION WITH FILTERS & SORTING -->
+                <div class="space-y-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <h3 class="font-bold text-emerald-950 text-xl">Rescue Store Products</h3>
+
+                        <!-- Filters Bar -->
+                        <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                            <!-- Product Search Input -->
+                            <input type="text" id="shopSearchInput" onkeyup="filterShopProducts()"
+                                placeholder="Search products..." class="p-2 border rounded-lg text-xs w-full sm:w-40">
+
+                            <!-- Category Filter Dropdown -->
+                            <select id="categoryFilter" onchange="filterShopProducts()"
+                                class="p-2 border rounded-lg text-xs bg-white">
+                                <option value="all">All Categories</option>
+                                <option value="Food">Food</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Toys">Toys</option>
+                                <option value="Health">Health</option>
+                            </select>
+
+                            <!-- Price Sort Dropdown -->
+                            <select id="priceSort" onchange="filterShopProducts()"
+                                class="p-2 border rounded-lg text-xs bg-white">
+                                <option value="default">Sort by Price</option>
+                                <option value="low-to-high">Low to High</option>
+                                <option value="high-to-low">High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Products Grid -->
+                    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Product Card 1 -->
+                        <div class="product-item bg-white border border-stone-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between"
+                            data-name="Rescue Dog Food Pack" data-category="Food" data-price="850">
+                            <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=500&q=80"
+                                class="w-full h-40 object-cover">
+                            <div class="p-4 space-y-2 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <span
+                                        class="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded">Food</span>
+                                    <h4 class="font-bold text-stone-800 text-sm mt-1">Rescue Dog Food Pack</h4>
+                                </div>
+                                <div class="pt-2 flex justify-between items-center border-t">
+                                    <span class="font-black text-emerald-900">₹850</span>
+                                    <button onclick="addToCart()"
+                                        class="bg-emerald-900 hover:bg-emerald-950 text-amber-400 px-3 py-1.5 rounded-lg font-bold text-xs transition">Add
+                                        to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="product-item bg-white border border-stone-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between"
+                            data-name="Emergency First Aid Kit" data-category="Health" data-price="1200">
+                            <img src="https://images.unsplash.com/photo-1603398938378-e54eab446dde?auto=format&fit=crop&w=500&q=80"
+                                class="w-full h-40 object-cover">
+                            <div class="p-4 space-y-2 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <span
+                                        class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded">Health</span>
+                                    <h4 class="font-bold text-stone-800 text-sm mt-1">Emergency First Aid Kit</h4>
+                                </div>
+                                <div class="pt-2 flex justify-between items-center border-t">
+                                    <span class="font-black text-emerald-900">₹1,200</span>
+                                    <button onclick="addToCart()"
+                                        class="bg-emerald-900 hover:bg-emerald-950 text-amber-400 px-3 py-1.5 rounded-lg font-bold text-xs transition">Add
+                                        to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="product-item bg-white border border-stone-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between"
+                            data-name="Reflective Safety Collar" data-category="Accessories" data-price="350">
+                            <img src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=500&q=80"
+                                class="w-full h-40 object-cover">
+                            <div class="p-4 space-y-2 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <span
+                                        class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded">Accessories</span>
+                                    <h4 class="font-bold text-stone-800 text-sm mt-1">Reflective Safety Collar</h4>
+                                </div>
+                                <div class="pt-2 flex justify-between items-center border-t">
+                                    <span class="font-black text-emerald-900">₹350</span>
+                                    <button onclick="addToCart()"
+                                        class="bg-emerald-900 hover:bg-emerald-950 text-amber-400 px-3 py-1.5 rounded-lg font-bold text-xs transition">Add
+                                        to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 4 -->
+                        <div class="product-item bg-white border border-stone-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between"
+                            data-name="Chew Toy Bundle" data-category="Toys" data-price="450">
+                            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=500&q=80"
+                                class="w-full h-40 object-cover">
+                            <div class="p-4 space-y-2 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <span
+                                        class="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded">Toys</span>
+                                    <h4 class="font-bold text-stone-800 text-sm mt-1">Chew Toy Bundle</h4>
+                                </div>
+                                <div class="pt-2 flex justify-between items-center border-t">
+                                    <span class="font-black text-emerald-900">₹450</span>
+                                    <button onclick="addToCart()"
+                                        class="bg-emerald-900 hover:bg-emerald-950 text-amber-400 px-3 py-1.5 rounded-lg font-bold text-xs transition">Add
+                                        to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -905,6 +1083,8 @@
     <!-- APP JAVASCRIPT LOGIC -->
     <script>
         let map;
+        let cartItems = 0;
+        let userPoints = 1450;
 
         function initMap() {
             if (document.getElementById('map') && !map) {
@@ -947,6 +1127,18 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileDropdown');
             menu.classList.toggle('hidden');
+        }
+
+        function navigateToRewards() {
+            // First switch to Home tab
+            switchTab('home');
+            // Then scroll smoothly to rewards section
+            setTimeout(() => {
+                const rewardsElement = document.getElementById('rewards');
+                if (rewardsElement) {
+                    rewardsElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 200);
         }
 
         function switchTab(tabId) {
@@ -1007,6 +1199,60 @@
                 donorsList.classList.remove('hidden');
                 donorTab.className = "w-1/2 py-2 text-center font-bold text-amber-600 border-b-2 border-amber-600";
                 rescuerTab.className = "w-1/2 py-2 text-center font-bold text-stone-500";
+            }
+        }
+
+        /* E-COMMERCE CART & FILTER FUNCTIONS */
+        function addToCart() {
+            cartItems++;
+            document.getElementById('cartCount').innerText = cartItems;
+            alert('Item added to your Cart!');
+        }
+
+        function filterShopProducts() {
+            const searchQuery = document.getElementById('shopSearchInput').value.toLowerCase();
+            const selectedCategory = document.getElementById('categoryFilter').value;
+            const sortOrder = document.getElementById('priceSort').value;
+
+            const grid = document.getElementById('productGrid');
+            const products = Array.from(grid.getElementsByClassName('product-item'));
+
+            // Filter logic
+            products.forEach(product => {
+                const name = product.getAttribute('data-name').toLowerCase();
+                const category = product.getAttribute('data-category');
+
+                const matchesSearch = name.includes(searchQuery);
+                const matchesCategory = (selectedCategory === 'all' || category === selectedCategory);
+
+                if (matchesSearch && matchesCategory) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            // Price Sort logic
+            if (sortOrder !== 'default') {
+                products.sort((a, b) => {
+                    const priceA = parseFloat(a.getAttribute('data-price'));
+                    const priceB = parseFloat(b.getAttribute('data-price'));
+
+                    return sortOrder === 'low-to-high' ? priceA - priceB : priceB - priceA;
+                });
+
+                products.forEach(product => grid.appendChild(product));
+            }
+        }
+
+        /* REWARDS REDEMPTION FUNCTION */
+        function redeemReward(rewardName, requiredPoints) {
+            if (userPoints >= requiredPoints) {
+                userPoints -= requiredPoints;
+                document.getElementById('userPointsDisplay').innerText = userPoints + " pts";
+                alert(`Congratulations! You have successfully redeemed: ${rewardName}`);
+            } else {
+                alert(`Insufficient Points! You need ${requiredPoints - userPoints} more points to redeem ${rewardName}.`);
             }
         }
 
