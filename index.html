@@ -23,18 +23,18 @@
             display: block;
         }
 
-        /* Dark Hero Styling */
+        /* Logo-Inspired Theme Gradient */
         .hero-dark-bg {
-            background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #022c22 100%);
+            background: linear-gradient(135deg, #0d2310 0%, #1c3d22 45%, #422006 100%);
         }
 
-        .gradient-text-emerald {
-            background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+        .gradient-logo-green {
+            background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .gradient-text-amber {
+        .gradient-logo-amber {
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -46,51 +46,97 @@
             border-radius: 1rem;
             z-index: 10;
         }
+
+        /* Prominent Responsive Header Logo */
+        .header-logo-img {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.15));
+        }
+
+        @media (min-width: 640px) {
+            .header-logo-img {
+                height: 120px;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col pt-16 pb-16 md:pb-0">
 
     <!-- TOP NAVIGATION BAR -->
-    <header class="bg-white border-b border-gray-200 fixed top-0 w-full z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Brand Logo -->
+    <header class="bg-white/95 backdrop-blur-md border-b border-stone-200 fixed top-0 w-full z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+
+            <!-- Brand Logo & Name -->
             <button onclick="switchTab('home')"
-                class="flex items-center gap-2 text-xl font-bold text-emerald-600 focus:outline-none">
-                <i class="fa-solid fa-paw text-amber-500 text-2xl"></i>
-                <span>Life After Rescue</span>
+                class="flex items-center gap-2 sm:gap-3 focus:outline-none group shrink-0">
+                <img src="logo.png" alt="Life After Rescue Logo"
+                    class="header-logo-img transition group-hover:scale-105"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div
+                    class="w-10 h-10 rounded-xl bg-emerald-900 text-amber-400 flex items-center justify-center font-bold text-lg hidden">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <span class="text-lg sm:text-2xl font-black text-emerald-950 tracking-tight hidden sm:inline-block">Life
+                    After Rescue</span>
             </button>
 
-            <!-- Desktop Menu Links -->
-            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-600">
-                <button onclick="switchTab('home')" class="hover:text-emerald-600 transition">Home</button>
-                <button onclick="switchTab('leaderboard')"
-                    class="hover:text-emerald-600 transition">Leaderboard</button>
-                <button onclick="switchTab('search')" class="hover:text-emerald-600 transition">Search</button>
-                <button onclick="switchTab('wishlist')" class="hover:text-emerald-600 transition">Wishlist</button>
-                <button onclick="switchTab('chat')" class="hover:text-emerald-600 transition">Chat</button>
-                <button onclick="switchTab('profile')" class="hover:text-emerald-600 transition">Profile</button>
-                <button onclick="switchTab('settings')" class="hover:text-emerald-600 transition" title="Settings">
+            <!-- Desktop Menu Links (Auto-Hides on Smaller Screens to Prevent Overflow) -->
+            <nav class="hidden xl:flex items-center gap-6 text-sm font-semibold text-stone-600">
+                <button onclick="switchTab('home')" class="hover:text-amber-600 transition">Home</button>
+                <button onclick="switchTab('leaderboard')" class="hover:text-amber-600 transition">Leaderboard</button>
+                <button onclick="switchTab('search')" class="hover:text-amber-600 transition">Search</button>
+                <button onclick="switchTab('wishlist')" class="hover:text-amber-600 transition">Wishlist</button>
+                <button onclick="switchTab('chat')" class="hover:text-amber-600 transition">Chat</button>
+                <button onclick="switchTab('profile')" class="hover:text-amber-600 transition">Profile</button>
+                <button onclick="switchTab('settings')" class="hover:text-amber-600 transition" title="Settings">
                     <i class="fa-solid fa-gear"></i>
                 </button>
             </nav>
 
-            <!-- Header Actions -->
-            <div class="flex items-center gap-3">
+            <!-- Header Action Buttons -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <button onclick="switchTab('add-animal')"
-                    class="bg-amber-400 hover:bg-amber-500 text-emerald-950 px-4 py-2 rounded-full font-bold text-sm shadow-sm flex items-center gap-2 transition">
-                    <i class="fa-solid fa-plus"></i> <span class="hidden sm:inline">Report Case</span>
+                    class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-3.5 sm:px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-md shadow-amber-600/20 flex items-center gap-1.5 transition hover:-translate-y-0.5">
+                    <i class="fa-solid fa-plus text-xs"></i> <span>Report Case</span>
                 </button>
+
                 <button onclick="switchTab('login')"
-                    class="hidden md:inline-block border border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-4 py-2 rounded-lg font-semibold text-sm transition">
-                    Login / Register
+                    class="border-2 border-emerald-800 text-emerald-900 hover:bg-emerald-800 hover:text-white px-3 sm:px-4 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition">
+                    Login
+                </button>
+
+                <!-- Mobile Hamburger Toggle Button -->
+                <button onclick="toggleMobileMenu()"
+                    class="xl:hidden p-2 rounded-lg text-emerald-950 hover:bg-stone-100 text-xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
-    </header>
 
+        <!-- Mobile Dropdown Navigation Menu -->
+        <div id="mobileDropdown"
+            class="hidden xl:hidden bg-white border-b border-stone-200 px-4 pt-2 pb-4 space-y-2 shadow-lg">
+            <button onclick="switchTab('home'); toggleMobileMenu()"
+                class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Home</button>
+            <button onclick="switchTab('leaderboard'); toggleMobileMenu()"
+                class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Leaderboard</button>
+            <button onclick="switchTab('search'); toggleMobileMenu()"
+                class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Search</button>
+            <button onclick="switchTab('wishlist'); toggleMobileMenu()"
+                class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Wishlist</button>
+            <button onclick="switchTab('chat'); toggleMobileMenu()"
+                class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Chat</button>
+            <button onclick="switchTab('profile'); toggleMobileMenu()"
+                class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Profile</button>
+            <button onclick="switchTab('settings'); toggleMobileMenu()"
+                class="block w-full text-left px-3 py-2 rounded-lg font-semibold text-stone-700 hover:bg-amber-50 hover:text-amber-600">Settings</button>
+        </div>
+    </header>
     <!-- MAIN APP CONTAINER -->
-    <main class="w-full flex-1">
+    <main class="w-full flex-1 ">
 
         <!-- 1. HOME TAB -->
         <section id="home" class="tab-content active">
@@ -445,9 +491,7 @@
             </section>
 
             <!-- RESCUE REWARDS & BADGES SECTION -->
-            <section id="rewards"
-                class="bg-gradient-to-br from-emerald-900 via-teal-900 to-emerald-950 text-white py-20"
-                data-aos="fade-up">
+            <section id="rewards" class="hero-dark-bg  text-white py-20" data-aos="fade-up">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
                     <div class="text-center max-w-3xl mx-auto space-y-3">
                         <span
