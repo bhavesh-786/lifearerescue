@@ -9,7 +9,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- AOS CSS CDN (Scroll Animations) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
     <style>
         .tab-content {
             display: none;
@@ -45,7 +49,7 @@
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 font-sans min-h-screen pb-16 md:pb-0 pt-16">
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col pt-16 pb-16 md:pb-0">
 
     <!-- TOP NAVIGATION BAR -->
     <header class="bg-white border-b border-gray-200 fixed top-0 w-full z-50 shadow-sm">
@@ -66,8 +70,9 @@
                 <button onclick="switchTab('wishlist')" class="hover:text-emerald-600 transition">Wishlist</button>
                 <button onclick="switchTab('chat')" class="hover:text-emerald-600 transition">Chat</button>
                 <button onclick="switchTab('profile')" class="hover:text-emerald-600 transition">Profile</button>
-                <button onclick="switchTab('settings')" class="hover:text-emerald-600 transition" title="Settings"><i
-                        class="fa-solid fa-gear"></i></button>
+                <button onclick="switchTab('settings')" class="hover:text-emerald-600 transition" title="Settings">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
             </nav>
 
             <!-- Header Actions -->
@@ -85,17 +90,18 @@
     </header>
 
     <!-- MAIN APP CONTAINER -->
-    <main class="w-full">
+    <main class="w-full flex-1">
 
-        <!-- 1. HOME TAB (Hero, Ecosystem Info & Active Cases) -->
+        <!-- 1. HOME TAB -->
         <section id="home" class="tab-content active">
-            <!-- NEW HERO SECTION (Designed from your reference image) -->
+
+            <!-- HERO SECTION -->
             <section class="hero-dark-bg text-white py-16 md:py-24 relative overflow-hidden">
                 <div
                     class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
                     <!-- Left Hero Content -->
-                    <div class="lg:col-span-7 space-y-6 text-left">
+                    <div class="lg:col-span-7 space-y-6 text-left" data-aos="fade-right">
                         <div
                             class="inline-flex items-center gap-2 bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 text-xs font-semibold px-3 py-1.5 rounded-full">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -114,7 +120,8 @@
 
                         <p class="text-gray-400 text-sm leading-relaxed max-w-2xl">
                             Every day, rescued animals disappear into disconnected systems and forgotten records[cite:
-                            1]. Life After Rescue gives every animal a permanent digital identity while connecting NGOs,
+                            1].
+                            Life After Rescue gives every animal a permanent digital identity while connecting NGOs,
                             shelters, veterinarians, governments, donors, and communities on one transparent
                             platform[cite: 1].
                         </p>
@@ -149,7 +156,7 @@
                     </div>
 
                     <!-- Right Visual Graphic & Floating Cards -->
-                    <div class="lg:col-span-5 relative flex justify-center py-6">
+                    <div class="lg:col-span-5 relative flex justify-center py-6" data-aos="fade-left">
 
                         <!-- Floating Glass Badge: Verified NGO -->
                         <div
@@ -192,12 +199,10 @@
 
                         <!-- Vertical Connected Timeline Graphic -->
                         <div class="relative py-4 flex flex-col items-center space-y-8 z-10">
-                            <!-- Curved Line Overlay -->
                             <div
                                 class="absolute top-6 bottom-6 w-0.5 bg-gradient-to-b from-amber-400 via-emerald-400 to-emerald-600">
                             </div>
 
-                            <!-- Step 1 Node -->
                             <div class="relative flex items-center gap-4 w-full">
                                 <div
                                     class="w-12 h-12 rounded-full bg-amber-500 border-4 border-emerald-950 flex flex-col items-center justify-center text-emerald-950 shadow-lg z-10">
@@ -207,7 +212,6 @@
                                 <span class="text-xs font-bold text-amber-300">Rescue</span>
                             </div>
 
-                            <!-- Step 2 Node -->
                             <div class="relative flex items-center gap-4 w-full">
                                 <div
                                     class="w-12 h-12 rounded-full bg-emerald-700 border-4 border-emerald-950 flex items-center justify-center text-emerald-200 shadow-lg z-10">
@@ -216,7 +220,6 @@
                                 <span class="text-xs font-bold text-emerald-200">Response</span>
                             </div>
 
-                            <!-- Step 3 Node -->
                             <div class="relative flex items-center gap-4 w-full">
                                 <div
                                     class="w-12 h-12 rounded-full bg-amber-400 border-4 border-emerald-950 flex items-center justify-center text-emerald-950 shadow-lg z-10">
@@ -225,7 +228,6 @@
                                 <span class="text-xs font-bold text-amber-400">Medical Care</span>
                             </div>
 
-                            <!-- Step 4 Node -->
                             <div class="relative flex items-center gap-4 w-full">
                                 <div
                                     class="w-12 h-12 rounded-full bg-emerald-600 border-4 border-emerald-950 flex items-center justify-center text-white shadow-lg z-10">
@@ -234,7 +236,6 @@
                                 <span class="text-xs font-bold text-emerald-200">Recovery</span>
                             </div>
 
-                            <!-- Step 5 Node -->
                             <div class="relative flex items-center gap-4 w-full">
                                 <div
                                     class="w-12 h-12 rounded-full bg-emerald-500 border-4 border-emerald-950 flex items-center justify-center text-emerald-950 font-bold shadow-lg z-10">
@@ -248,128 +249,9 @@
 
                 </div>
             </section>
-            <!-- HERO SECTION -->
-            <section class="hero-gradient min-h-[85vh] flex items-center relative overflow-hidden py-16">
-                <div
-                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
-                    <!-- Left Hero Content -->
-                    <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-                        <div
-                            class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-xs font-bold px-4 py-2 rounded-full shadow-sm">
-                            <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            Connecting Public, NGOs, & Shelters Globally
-                        </div>
-
-                        <h1
-                            class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.15]">
-                            Giving Every Rescued Animal a <span class="gradient-text">Permanent Digital Identity</span>
-                        </h1>
-
-                        <p class="text-gray-600 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                            Stop losing critical animal records in chat groups. Track complete rescue journeys—from
-                            injury reports
-                            to medical treatments, direct case funding, and permanent adoptions[cite: 1].
-                        </p>
-
-                        <!-- CTAs -->
-                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                            <a href="add-animal.html"
-                                class="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-emerald-600/25 flex items-center justify-center gap-3 transition hover:-translate-y-0.5">
-                                <i class="fa-solid fa-camera"></i> Report Injured Animal
-                            </a>
-                            <a href="#active-feed"
-                                class="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-8 py-4 rounded-xl font-bold text-lg shadow-sm flex items-center justify-center gap-2 transition">
-                                Explore Active Feed <i class="fa-solid fa-arrow-down text-sm"></i>
-                            </a>
-                        </div>
-
-                        <!-- Micro Social Proof -->
-                        <div
-                            class="pt-6 border-t border-gray-200/60 flex items-center justify-center lg:justify-start gap-8 text-sm text-gray-500 font-medium">
-                            <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-shield-halved text-emerald-600 text-base"></i> Verified NGOs
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-qrcode text-emerald-600 text-base"></i> QR Health Cards
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-heart text-amber-500 text-base"></i> Direct Funding
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Hero Visual Card -->
-                    <div class="lg:col-span-5 relative">
-                        <div class="relative mx-auto max-w-md lg:max-w-none">
-                            <!-- Main Card -->
-                            <div
-                                class="bg-white p-4 rounded-3xl shadow-2xl border border-gray-100 transform lg:rotate-1 hover:rotate-0 transition duration-500">
-                                <div class="relative h-72 rounded-2xl overflow-hidden mb-4">
-                                    <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80"
-                                        alt="Rescued Dog" class="w-full h-full object-cover">
-                                    <span
-                                        class="absolute top-3 left-3 bg-amber-500/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
-                                        <i class="fa-solid fa-rotate text-[10px] animate-spin"></i> Medical Recovery
-                                    </span>
-                                </div>
-                                <div class="space-y-3 px-2 pb-2">
-                                    <div class="flex justify-between items-start">
-                                        <div>
-                                            <h3 class="font-bold text-xl text-gray-900">Rocky - Severe Leg Injury</h3>
-                                            <p class="text-xs text-gray-500 flex items-center gap-1 mt-0.5"><i
-                                                    class="fa-solid fa-location-dot text-red-500"></i> Jaipur, Rajasthan
-                                            </p>
-                                        </div>
-                                        <span
-                                            class="text-xs font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">ID:
-                                            #LAR-892</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
-                                        <div class="bg-emerald-500 h-2.5 rounded-full" style="width: 70%"></div>
-                                    </div>
-                                    <div class="flex justify-between text-xs text-gray-500 font-semibold">
-                                        <span>Funded: ₹8,400 / ₹12,000</span>
-                                        <span>70% Recovered</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Floating Badge 1 -->
-                            <div
-                                class="absolute -top-6 -left-6 bg-white p-3.5 rounded-2xl shadow-xl border border-gray-100 hidden sm:flex items-center gap-3">
-                                <div
-                                    class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg">
-                                    <i class="fa-solid fa-bolt"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-400 font-semibold">Auto Match</p>
-                                    <p class="text-xs font-bold text-gray-800">Nearest NGO Alerted</p>
-                                </div>
-                            </div>
-
-                            <!-- Floating Badge 2 -->
-                            <div
-                                class="absolute -bottom-6 -right-6 bg-white p-3.5 rounded-2xl shadow-xl border border-gray-100 hidden sm:flex items-center gap-3">
-                                <div
-                                    class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">
-                                    <i class="fa-solid fa-qrcode"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-400 font-semibold">Medical History</p>
-                                    <p class="text-xs font-bold text-gray-800">Scan QR Code</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-
 
             <!-- STATS BAR -->
-            <section class="bg-emerald-900 text-white py-10 border-y border-emerald-800">
+            <section class="bg-emerald-950 text-white py-10 border-y border-emerald-900" data-aos="fade-up">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     <div class="space-y-1">
                         <p class="text-3xl sm:text-4xl font-black text-amber-400">100%</p>
@@ -390,21 +272,19 @@
                 </div>
             </section>
 
-            <!-- HOW IT WORKS (STEP BY STEP ECOSYSTEM) -->
+            <!-- HOW IT WORKS SECTION -->
             <section id="about" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3" data-aos="fade-up">
                     <h2 class="text-xs font-extrabold text-emerald-600 uppercase tracking-widest">End-to-End Tracking
                         System</h2>
                     <p class="text-3xl sm:text-4xl font-black text-gray-900">How Life After Rescue Works</p>
                     <p class="text-gray-600 text-base">A single unified pipeline connecting public reporters, field
-                        rescuers, vets,
-                        and donors[cite: 1].</p>
+                        rescuers, vets, and donors[cite: 1].</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Step 1 -->
-                    <div
-                        class="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-1 transition duration-300 relative group">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-1 transition duration-300 relative group"
+                        data-aos="fade-up" data-aos-delay="100">
                         <div
                             class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl font-black mb-6 group-hover:scale-110 transition">
                             01
@@ -412,14 +292,12 @@
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Report & Auto-Match</h3>
                         <p class="text-sm text-gray-600 leading-relaxed">
                             Public snaps a photo with GPS location in 30 seconds[cite: 1]. The platform automatically
-                            routes the
-                            case to the nearest available verified NGO or rescuer[cite: 1].
+                            routes the case to the nearest available verified NGO or rescuer[cite: 1].
                         </p>
                     </div>
 
-                    <!-- Step 2 -->
-                    <div
-                        class="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-1 transition duration-300 relative group">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-1 transition duration-300 relative group"
+                        data-aos="fade-up" data-aos-delay="200">
                         <div
                             class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl font-black mb-6 group-hover:scale-110 transition">
                             02
@@ -427,14 +305,12 @@
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Digital Medical Identity</h3>
                         <p class="text-sm text-gray-600 leading-relaxed">
                             Every animal gets a unique ID card with a QR code[cite: 1]. Vets log surgeries, daily
-                            medical updates,
-                            and vaccination progress directly to their profile[cite: 1].
+                            medical updates, and vaccination progress directly to their profile[cite: 1].
                         </p>
                     </div>
 
-                    <!-- Step 3 -->
-                    <div
-                        class="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-1 transition duration-300 relative group">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-1 transition duration-300 relative group"
+                        data-aos="fade-up" data-aos-delay="300">
                         <div
                             class="w-14 h-14 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-2xl font-black mb-6 group-hover:scale-110 transition">
                             03
@@ -442,8 +318,7 @@
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Transparent Support & Adoption</h3>
                         <p class="text-sm text-gray-600 leading-relaxed">
                             Donors fund individual medical cases and receive direct photo updates[cite: 1]. Fully
-                            recovered animals
-                            seamlessly transfer to adoption listings[cite: 1].
+                            recovered animals seamlessly transfer to adoption listings[cite: 1].
                         </p>
                     </div>
                 </div>
@@ -452,23 +327,22 @@
             <!-- LIVE RESCUE FEED PREVIEW -->
             <section id="active-feed" class="bg-gray-100/70 py-20 border-t border-gray-200/60">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4"
+                        data-aos="fade-up">
                         <div>
                             <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-widest">Real-time
-                                Ground
-                                Activity</span>
+                                Ground Activity</span>
                             <h2 class="text-3xl font-black text-gray-900 mt-1">Active Rescue Cases</h2>
                         </div>
-                        <a href="search.html"
+                        <button onclick="switchTab('search')"
                             class="bg-white text-emerald-700 hover:bg-emerald-50 border border-emerald-200 px-5 py-2.5 rounded-xl text-sm font-bold shadow-sm transition">
                             View All Cases →
-                        </a>
+                        </button>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <!-- Case Card 1 -->
-                        <div
-                            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
+                        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition"
+                            data-aos="zoom-in" data-aos-delay="100">
                             <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80"
                                 class="w-full h-52 object-cover">
                             <div class="p-6 space-y-4">
@@ -484,28 +358,25 @@
                                             class="fa-solid fa-location-dot text-red-500"></i> Jaipur, Rajasthan</p>
                                 </div>
                                 <p class="text-gray-600 text-sm line-clamp-2">Suffered severe leg fracture near Sector
-                                    4. Currently
-                                    receiving medical care at Care Shelter.</p>
+                                    4. Currently receiving medical care at Care Shelter.</p>
                                 <div class="pt-4 border-t flex justify-between items-center">
                                     <span class="text-xs text-gray-500">NGO: <strong>Jaipur Animal
                                             Shield</strong></span>
-                                    <a href="chat.html" class="text-emerald-600 text-xs font-bold hover:underline">Chat
-                                        NGO</a>
+                                    <button onclick="switchTab('chat')"
+                                        class="text-emerald-600 text-xs font-bold hover:underline">Chat NGO</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Case Card 2 -->
-                        <div
-                            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
+                        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition"
+                            data-aos="zoom-in" data-aos-delay="200">
                             <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80"
                                 class="w-full h-52 object-cover">
                             <div class="p-6 space-y-4">
                                 <div class="flex justify-between items-center">
                                     <span
                                         class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-md">Ready
-                                        for
-                                        Adoption</span>
+                                        for Adoption</span>
                                     <span class="text-xs text-gray-400 font-mono">ID: #LAR-205</span>
                                 </div>
                                 <div>
@@ -514,19 +385,17 @@
                                             class="fa-solid fa-location-dot text-red-500"></i> New Delhi</p>
                                 </div>
                                 <p class="text-gray-600 text-sm line-clamp-2">Fully vaccinated and neutered. Looking for
-                                    a loving
-                                    permanent home.</p>
+                                    a loving permanent home.</p>
                                 <div class="pt-4 border-t flex justify-between items-center">
                                     <span class="text-xs text-gray-500">NGO: <strong>Hope For Strays</strong></span>
-                                    <a href="chat.html" class="text-emerald-600 text-xs font-bold hover:underline">Adopt
-                                        Milo</a>
+                                    <button onclick="switchTab('chat')"
+                                        class="text-emerald-600 text-xs font-bold hover:underline">Adopt Milo</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Case Card 3 -->
-                        <div
-                            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition">
+                        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition"
+                            data-aos="zoom-in" data-aos-delay="300">
                             <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=600&q=80"
                                 class="w-full h-52 object-cover">
                             <div class="p-6 space-y-4">
@@ -542,12 +411,11 @@
                                             class="fa-solid fa-location-dot text-red-500"></i> Udaipur, Rajasthan</p>
                                 </div>
                                 <p class="text-gray-600 text-sm line-clamp-2">Highway collision injury; urgent surgery
-                                    required.
-                                    Funding open for medical care.</p>
+                                    required. Funding open for medical care.</p>
                                 <div class="pt-4 border-t flex justify-between items-center">
                                     <span class="text-xs text-gray-500">NGO: <strong>Gau Seva Trust</strong></span>
-                                    <a href="chat.html" class="text-emerald-600 text-xs font-bold hover:underline">Fund
-                                        Surgery</a>
+                                    <button onclick="switchTab('chat')"
+                                        class="text-emerald-600 text-xs font-bold hover:underline">Fund Surgery</button>
                                 </div>
                             </div>
                         </div>
@@ -556,17 +424,15 @@
             </section>
 
             <!-- LIVE RESCUE MAP SECTION -->
-            <section id="rescue-map" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section id="rescue-map" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
                 <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
                             <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-widest">Live
-                                Incident
-                                Tracking</span>
+                                Incident Tracking</span>
                             <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-1">Active Rescue Map</h2>
                             <p class="text-gray-500 text-sm">Real-time GPS locations of reported animals and nearby
-                                shelters[cite:
-                                1].</p>
+                                shelters[cite: 1].</p>
                         </div>
                         <button onclick="getLocation()"
                             class="bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 transition">
@@ -574,16 +440,15 @@
                         </button>
                     </div>
 
-                    <!-- Interactive Map Container -->
                     <div id="map" class="shadow-inner border border-gray-200"></div>
                 </div>
             </section>
 
-            <!-- RESCUE REWARDS & BADGES SECTION (GAMIFICATION) -->
+            <!-- RESCUE REWARDS & BADGES SECTION -->
             <section id="rewards"
-                class="bg-gradient-to-br from-emerald-900 via-teal-900 to-emerald-950 text-white py-20">
+                class="bg-gradient-to-br from-emerald-900 via-teal-900 to-emerald-950 text-white py-20"
+                data-aos="fade-up">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-
                     <div class="text-center max-w-3xl mx-auto space-y-3">
                         <span
                             class="bg-amber-400/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/30">
@@ -591,26 +456,23 @@
                         </span>
                         <h2 class="text-3xl sm:text-4xl font-black">Rescue Reward Points</h2>
                         <p class="text-emerald-200 text-base">Earn points for every action on the platform and climb the
-                            community
-                            leaderboard[cite: 1].</p>
+                            community leaderboard[cite: 1].</p>
                     </div>
 
-                    <!-- Reward System Table / Points Breakdown -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div
-                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3">
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3"
+                            data-aos="flip-left" data-aos-delay="100">
                             <div
                                 class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
                                 +10
                             </div>
                             <h4 class="font-bold text-lg text-white">Report Case</h4>
                             <p class="text-xs text-emerald-200">Submit a new stray or injured animal report with GPS
-                                photo[cite: 1].
-                            </p>
+                                photo[cite: 1].</p>
                         </div>
 
-                        <div
-                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3">
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3"
+                            data-aos="flip-left" data-aos-delay="200">
                             <div
                                 class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
                                 +50
@@ -620,8 +482,8 @@
                             </p>
                         </div>
 
-                        <div
-                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3">
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3"
+                            data-aos="flip-left" data-aos-delay="300">
                             <div
                                 class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
                                 +15
@@ -631,8 +493,8 @@
                             </p>
                         </div>
 
-                        <div
-                            class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3">
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center space-y-3"
+                            data-aos="flip-left" data-aos-delay="400">
                             <div
                                 class="w-12 h-12 bg-amber-400 text-emerald-950 font-black rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg">
                                 +100
@@ -643,8 +505,7 @@
                         </div>
                     </div>
 
-                    <!-- Badges Showcase -->
-                    <div class="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-6">
+                    <div class="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-6" data-aos="zoom-in">
                         <h3 class="text-xl font-bold text-center text-amber-300">Earnable Public Badges</h3>
                         <div class="flex flex-wrap justify-center gap-6">
                             <div
@@ -675,13 +536,12 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section>
         </section>
 
         <!-- 2. LOGIN / REGISTRATION TAB -->
-        <section id="login" class="tab-content max-w-md mx-auto p-4 mt-8">
+        <section id="login" class="tab-content max-w-md mx-auto p-4 mt-8" data-aos="fade-up">
             <div class="bg-white p-6 rounded-xl shadow-md">
                 <div class="flex border-b mb-4">
                     <button id="loginTabBtn" onclick="toggleAuth('login')"
@@ -690,7 +550,6 @@
                         class="w-1/2 py-2 text-center font-bold text-gray-500">Register</button>
                 </div>
 
-                <!-- Login Form -->
                 <form id="loginForm" class="space-y-4"
                     onsubmit="event.preventDefault(); alert('Logged in successfully!'); switchTab('home');">
                     <div>
@@ -708,7 +567,6 @@
                         In</button>
                 </form>
 
-                <!-- Registration Form -->
                 <form id="registerForm" class="space-y-4 hidden"
                     onsubmit="event.preventDefault(); alert('Registration complete!'); switchTab('login');">
                     <div>
@@ -739,7 +597,7 @@
         </section>
 
         <!-- 3. ADD ANIMAL FORM -->
-        <section id="add-animal" class="tab-content max-w-lg mx-auto p-4 mt-8">
+        <section id="add-animal" class="tab-content max-w-lg mx-auto p-4 mt-8" data-aos="fade-up">
             <div class="bg-white p-6 rounded-xl shadow-md space-y-4">
                 <h2 class="text-xl font-bold text-gray-800 border-b pb-2"><i
                         class="fa-solid fa-camera text-emerald-600"></i> Report / Add Animal Case</h2>
@@ -772,11 +630,12 @@
             </div>
         </section>
 
-        <!-- 4. LEADERBOARD (Top Rescuers & Top Donors) -->
-        <section id="leaderboard" class="tab-content max-w-4xl mx-auto p-4 mt-8">
+        <!-- 4. LEADERBOARD -->
+        <section id="leaderboard" class="tab-content max-w-4xl mx-auto p-4 mt-8" data-aos="fade-up">
             <div class="bg-white p-6 rounded-xl shadow-md">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2"><i
-                        class="fa-solid fa-trophy text-amber-500"></i> Gamified Leaderboard</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-trophy text-amber-500"></i> Gamified Leaderboard
+                </h2>
 
                 <div class="flex border-b mb-4">
                     <button id="rescuerTab" onclick="switchLeaderboard('rescuers')"
@@ -786,7 +645,6 @@
                         class="w-1/2 py-2 text-center font-bold text-gray-500">Top Donors</button>
                 </div>
 
-                <!-- Rescuers List -->
                 <div id="rescuersList" class="space-y-3">
                     <div class="flex justify-between items-center p-3 bg-amber-50 border border-amber-200 rounded-lg">
                         <div class="flex items-center gap-3">
@@ -812,7 +670,6 @@
                     </div>
                 </div>
 
-                <!-- Donors List -->
                 <div id="donorsList" class="space-y-3 hidden">
                     <div class="flex justify-between items-center p-3 bg-amber-50 border border-amber-200 rounded-lg">
                         <div class="flex items-center gap-3">
@@ -830,11 +687,12 @@
             </div>
         </section>
 
-        <!-- 5. SEARCH (NGOs & Products) -->
-        <section id="search" class="tab-content max-w-4xl mx-auto p-4 mt-8">
+        <!-- 5. SEARCH -->
+        <section id="search" class="tab-content max-w-4xl mx-auto p-4 mt-8" data-aos="fade-up">
             <div class="bg-white p-6 rounded-xl shadow-md">
-                <h2 class="text-xl font-bold text-gray-800 mb-3"><i
-                        class="fa-solid fa-magnifying-glass text-emerald-600"></i> Search NGOs & Products</h2>
+                <h2 class="text-xl font-bold text-gray-800 mb-3">
+                    <i class="fa-solid fa-magnifying-glass text-emerald-600"></i> Search NGOs & Products
+                </h2>
                 <div class="flex gap-2 mb-4">
                     <input type="text" placeholder="Search NGOs, pet food, first aid products..."
                         class="w-full p-2 border rounded-lg">
@@ -867,11 +725,12 @@
             </div>
         </section>
 
-        <!-- 6. WISHLIST / SAVED ANIMALS -->
-        <section id="wishlist" class="tab-content max-w-4xl mx-auto p-4 mt-8">
+        <!-- 6. WISHLIST -->
+        <section id="wishlist" class="tab-content max-w-4xl mx-auto p-4 mt-8" data-aos="fade-up">
             <div class="bg-white p-6 rounded-xl shadow-md">
-                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fa-solid fa-bookmark text-amber-500"></i>
-                    Wishlist / Saved Cases</h2>
+                <h2 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fa-solid fa-bookmark text-amber-500"></i> Wishlist / Saved Cases
+                </h2>
                 <div class="p-4 border rounded-lg flex justify-between items-center">
                     <div>
                         <h4 class="font-bold text-gray-800">Rocky - Injured Dog</h4>
@@ -883,7 +742,7 @@
         </section>
 
         <!-- 7. CHAT SCREEN -->
-        <section id="chat" class="tab-content max-w-3xl mx-auto p-4 mt-8">
+        <section id="chat" class="tab-content max-w-3xl mx-auto p-4 mt-8" data-aos="fade-up">
             <div class="bg-white rounded-xl shadow-md h-[480px] flex flex-col">
                 <div class="p-3 border-b bg-emerald-600 text-white rounded-t-xl font-bold flex items-center gap-2">
                     <i class="fa-solid fa-circle-user"></i> Jaipur Animal Shield NGO
@@ -905,11 +764,12 @@
         </section>
 
         <!-- 8. USER PROFILE -->
-        <section id="profile" class="tab-content max-w-md mx-auto p-4 mt-8">
+        <section id="profile" class="tab-content max-w-md mx-auto p-4 mt-8" data-aos="fade-up">
             <div class="bg-white p-6 rounded-xl shadow-md text-center">
                 <div
                     class="w-24 h-24 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-4xl mx-auto mb-3 font-bold">
-                    NS</div>
+                    HD
+                </div>
                 <h2 class="text-2xl font-bold text-gray-800">Harshil Darji</h2>
                 <p class="text-sm text-gray-500">Active Animal Volunteer</p>
 
@@ -941,7 +801,7 @@
         </section>
 
         <!-- 9. SETTINGS PAGE -->
-        <section id="settings" class="tab-content max-w-md mx-auto p-4 mt-8">
+        <section id="settings" class="tab-content max-w-md mx-auto p-4 mt-8" data-aos="fade-up">
             <div class="bg-white p-6 rounded-xl shadow-md space-y-6">
                 <h2 class="text-xl font-bold text-gray-800 border-b pb-2"><i
                         class="fa-solid fa-gear text-emerald-600"></i> Settings</h2>
@@ -967,7 +827,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-center text-gray-500">
             © 2026 Life After Rescue. Built for global animal welfare impact[cite: 1].
         </div>
@@ -986,40 +846,48 @@
         <button onclick="switchTab('profile')" class="text-gray-600 hover:text-emerald-600 text-center"><i
                 class="fa-solid fa-user block text-lg"></i><span class="text-[10px]">Profile</span></button>
     </nav>
+
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- APP NAVIGATION JAVASCRIPT -->
+    <!-- AOS JS CDN -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <!-- APP JAVASCRIPT LOGIC -->
     <script>
+        let map;
 
-        // Initialize Map centered on Jaipur, Rajasthan
-        const map = L.map('map').setView([26.9124, 75.7873], 12);
+        function initMap() {
+            if (document.getElementById('map') && !map) {
+                map = L.map('map').setView([26.9124, 75.7873], 12);
 
-        // Load OpenStreetMap tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
 
-        // Sample Rescue Markers
-        const rescues = [
-            { lat: 26.9124, lng: 75.7873, title: "Rocky (Injured Dog)", status: "Recovering" },
-            { lat: 26.9220, lng: 75.8000, title: "Milo (Abandoned Cat)", status: "Ready for Adoption" },
-            { lat: 26.8900, lng: 75.7500, title: "Injured Cow Alert", status: "Critical Emergency" }
-        ];
+                const rescues = [
+                    { lat: 26.9124, lng: 75.7873, title: "Rocky (Injured Dog)", status: "Recovering" },
+                    { lat: 26.9220, lng: 75.8000, title: "Milo (Abandoned Cat)", status: "Ready for Adoption" },
+                    { lat: 26.8900, lng: 75.7500, title: "Injured Cow Alert", status: "Critical Emergency" }
+                ];
 
-        rescues.forEach(item => {
-            L.marker([item.lat, item.lng])
-                .addTo(map)
-                .bindPopup(`<b>${item.title}</b><br>Status: ${item.status}`);
-        });
+                rescues.forEach(item => {
+                    L.marker([item.lat, item.lng])
+                        .addTo(map)
+                        .bindPopup(`<b>${item.title}</b><br>Status: ${item.status}`);
+                });
+            }
+        }
 
-        // Get User Location function
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
                     const lat = position.coords.latitude;
                     const lng = position.coords.longitude;
-                    map.setView([lat, lng], 14);
-                    L.marker([lat, lng]).addTo(map).bindPopup("<b>Your Current Location</b>").openPopup();
+                    if (map) {
+                        map.setView([lat, lng], 14);
+                        L.marker([lat, lng]).addTo(map).bindPopup("<b>Your Current Location</b>").openPopup();
+                    }
                 });
             } else {
                 alert("Geolocation is not supported by your browser.");
@@ -1029,8 +897,25 @@
         function switchTab(tabId) {
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
+
+            const target = document.getElementById(tabId);
+            if (target) {
+                target.classList.add('active');
+            }
+
             window.scrollTo(0, 0);
+
+            if (tabId === 'home') {
+                setTimeout(() => {
+                    initMap();
+                    if (map) map.invalidateSize();
+                }, 200);
+            }
+
+            // Refresh AOS animations for newly active tab elements
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
         }
 
         function toggleAuth(type) {
@@ -1070,6 +955,16 @@
                 rescuerTab.className = "w-1/2 py-2 text-center font-bold text-gray-500";
             }
         }
+
+        window.onload = function () {
+            initMap();
+            // Initialize AOS library
+            AOS.init({
+                duration: 800,
+                once: false, // Animates on both scroll down AND up
+                mirror: true
+            });
+        };
     </script>
 </body>
 
