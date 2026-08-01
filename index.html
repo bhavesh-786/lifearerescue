@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life After Rescue - Global Animal Welfare Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen pb-16 md:pb-0 pt-16">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="bg-white border-b border-gray-200 fixed top-0 w-full z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <button onclick="switchTab('home')"
+                class="flex items-center gap-2 text-xl font-bold text-emerald-600 focus:outline-none">
+                <i class="fa-solid fa-paw text-amber-500 text-2xl"></i>
+                <span>Life After Rescue</span>
+            </button>
+
+            <!-- Desktop Menu Links -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-600">
+                <button onclick="switchTab('home')" class="hover:text-emerald-600 transition">Home</button>
+                <button onclick="switchTab('leaderboard')"
+                    class="hover:text-emerald-600 transition">Leaderboard</button>
+                <button onclick="switchTab('search')" class="hover:text-emerald-600 transition">Search</button>
+                <button onclick="switchTab('wishlist')" class="hover:text-emerald-600 transition">Wishlist</button>
+                <button onclick="switchTab('chat')" class="hover:text-emerald-600 transition">Chat</button>
+                <button onclick="switchTab('profile')" class="hover:text-emerald-600 transition">Profile</button>
+                <button onclick="switchTab('settings')" class="hover:text-emerald-600 transition" title="Settings"><i
+                        class="fa-solid fa-gear"></i></button>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="switchTab('add-animal')"
+                    class="bg-amber-400 hover:bg-amber-500 text-emerald-950 px-4 py-2 rounded-full font-bold text-sm shadow-sm flex items-center gap-2 transition">
+                    <i class="fa-solid fa-plus"></i> <span class="hidden sm:inline">Report Case</span>
+                </button>
+                <button onclick="switchTab('login')"
+                    class="hidden md:inline-block border border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-4 py-2 rounded-lg font-semibold text-sm transition">
+                    Login / Register
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="w-full">
+
+        <!-- 1. HOME TAB (Hero, Ecosystem Info & Active Cases) -->
+        <section id="home" class="tab-content active">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-12 md:py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <span
+                            class="bg-emerald-500 text-emerald-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Global Rescue Ecosystem
+                        </span>
+                        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+                            Every Rescued Animal Deserves a Digital Identity
+                        </h1>
+                        <p class="text-emerald-100 text-lg leading-relaxed">
+                            Track the complete journey of rescued animals—from initial reporting and medical treatment
+                            to permanent care and adoption[cite: 1].
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button onclick="switchTab('add-animal')"
+                                class="bg-amber-400 hover:bg-amber-500 text-emerald-950 px-6 py-3 rounded-xl font-bold text-lg shadow-lg transition">
+                                Report an Animal
+                            </button>
+                            <button onclick="switchTab('search')"
+                                class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3 rounded-xl font-bold text-lg backdrop-blur-sm transition">
+                                Search NGOs
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80"
+                            alt="Rescued Dog" class="rounded-2xl shadow-2xl object-cover w-full h-[360px]">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ecosystem Workflow -->
+            <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <h2 class="text-3xl font-bold text-gray-900">How Platform Works</h2>
+                    <p class="text-gray-600 text-sm mt-2">Connecting public reporters, NGOs, medical teams, and donors
+                        transparently[cite: 1].</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-center">
+                        <div
+                            class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                            1</div>
+                        <h3 class="font-bold text-gray-800 text-lg mb-2">Report & Auto-Match</h3>
+                        <p class="text-sm text-gray-600">Quickly report an injured or stray animal with photo and GPS
+                            location[cite: 1]. System auto-alerts nearby verified rescuers[cite: 1].</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-center">
+                        <div
+                            class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                            2</div>
+                        <h3 class="font-bold text-gray-800 text-lg mb-2">Digital Health Card</h3>
+                        <p class="text-sm text-gray-600">Create a permanent medical profile with QR code to track
+                            vaccinations, surgeries, and daily recovery notes[cite: 1].</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-center">
+                        <div
+                            class="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                            3</div>
+                        <h3 class="font-bold text-gray-800 text-lg mb-2">Transparent Support</h3>
+                        <p class="text-sm text-gray-600">Donors directly fund specific animal cases and receive verified
+                            medical progress updates[cite: 1].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Animal Feed Preview -->
+            <div class="bg-gray-100 py-12 border-t">
+                <div class="max-w-5xl mx-auto px-4">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-900">Active Rescue Feed</h2>
+                        <button onclick="switchTab('add-animal')"
+                            class="text-emerald-600 font-bold text-sm hover:underline">+ New Report</button>
+                    </div>
+                    <div class="space-y-6">
+                        <!-- Rescue Feed Card -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                            <div class="p-5">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <span
+                                            class="bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded">Recovering</span>
+                                        <h3 class="text-xl font-bold text-gray-800 mt-2">Rocky - Injured Dog</h3>
+                                        <p class="text-sm text-gray-500 flex items-center gap-1 mt-1"><i
+                                                class="fa-solid fa-location-dot text-red-500"></i> Jaipur, Rajasthan</p>
+                                    </div>
+                                    <button class="text-gray-400 hover:text-amber-500 text-xl"
+                                        title="Save to Wishlist"><i class="fa-solid fa-bookmark"></i></button>
+                                </div>
+                                <p class="text-gray-600 mt-3 text-sm">Found with a leg injury near Sector 4. Currently
+                                    undergoing active treatment at the shelter.</p>
+                                <div class="mt-4 pt-3 border-t flex justify-between items-center text-xs text-gray-500">
+                                    <span>NGO: <strong>Jaipur Animal Shield</strong></span>
+                                    <button onclick="switchTab('chat')"
+                                        class="text-emerald-600 font-bold hover:underline">Chat with Rescuer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. LOGIN / REGISTRATION TAB -->
+        <section id="login" class="tab-content max-w-md mx-auto p-4 mt-8">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="flex border-b mb-4">
+                    <button id="loginTabBtn" onclick="toggleAuth('login')"
+                        class="w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600">Login</button>
+                    <button id="registerTabBtn" onclick="toggleAuth('register')"
+                        class="w-1/2 py-2 text-center font-bold text-gray-500">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="space-y-4"
+                    onsubmit="event.preventDefault(); alert('Logged in successfully!'); switchTab('home');">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" required
+                            class="w-full mt-1 p-2 border rounded-lg focus:ring-emerald-500 focus:border-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" required
+                            class="w-full mt-1 p-2 border rounded-lg focus:ring-emerald-500 focus:border-emerald-500">
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-emerald-600 text-white py-2 rounded-lg font-bold hover:bg-emerald-700">Sign
+                        In</button>
+                </form>
+
+                <!-- Registration Form -->
+                <form id="registerForm" class="space-y-4 hidden"
+                    onsubmit="event.preventDefault(); alert('Registration complete!'); switchTab('login');">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" required class="w-full mt-1 p-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">User Type</label>
+                        <select class="w-full mt-1 p-2 border rounded-lg">
+                            <option>Individual / Volunteer</option>
+                            <option>NGO / Shelter</option>
+                            <option>Donor</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" required class="w-full mt-1 p-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" required class="w-full mt-1 p-2 border rounded-lg">
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-emerald-600 text-white py-2 rounded-lg font-bold hover:bg-emerald-700">Create
+                        Account</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 3. ADD ANIMAL FORM -->
+        <section id="add-animal" class="tab-content max-w-lg mx-auto p-4 mt-8">
+            <div class="bg-white p-6 rounded-xl shadow-md space-y-4">
+                <h2 class="text-xl font-bold text-gray-800 border-b pb-2"><i
+                        class="fa-solid fa-camera text-emerald-600"></i> Report / Add Animal Case</h2>
+                <form class="space-y-4"
+                    onsubmit="event.preventDefault(); alert('Animal case submitted successfully! +10 Points earned.'); switchTab('home');">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Upload Image</label>
+                        <input type="file" accept="image/*"
+                            class="w-full mt-1 p-2 border border-dashed border-gray-300 rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Rescue Story / Animal Condition</label>
+                        <textarea rows="3" placeholder="Describe animal's condition, injury level, or rescue story..."
+                            class="w-full mt-1 p-2 border rounded-lg"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Location</label>
+                        <div class="flex gap-2 mt-1">
+                            <input type="text" placeholder="Landmark or city name" class="w-full p-2 border rounded-lg">
+                            <button type="button" onclick="alert('GPS Location Fetched!')"
+                                class="bg-gray-200 px-3 py-2 rounded-lg text-sm flex items-center gap-1 font-semibold text-gray-700">
+                                <i class="fa-solid fa-location-crosshairs"></i> GPS
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-emerald-600 text-white py-2 rounded-lg font-bold hover:bg-emerald-700">Submit
+                        Rescue Case (+10 Points)</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 4. LEADERBOARD (Top Rescuers & Top Donors) -->
+        <section id="leaderboard" class="tab-content max-w-4xl mx-auto p-4 mt-8">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2"><i
+                        class="fa-solid fa-trophy text-amber-500"></i> Gamified Leaderboard</h2>
+
+                <div class="flex border-b mb-4">
+                    <button id="rescuerTab" onclick="switchLeaderboard('rescuers')"
+                        class="w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600">Top
+                        Rescuers</button>
+                    <button id="donorTab" onclick="switchLeaderboard('donors')"
+                        class="w-1/2 py-2 text-center font-bold text-gray-500">Top Donors</button>
+                </div>
+
+                <!-- Rescuers List -->
+                <div id="rescuersList" class="space-y-3">
+                    <div class="flex justify-between items-center p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-amber-600 text-lg">#1</span>
+                            <div>
+                                <p class="font-bold text-gray-800">Jaipur Animal Shield <span
+                                        class="text-xs bg-amber-200 text-amber-800 px-2 py-0.5 rounded">Rescue Hero
+                                        Badge</span></p>
+                                <p class="text-xs text-gray-500">142 Successful Rescues</p>
+                            </div>
+                        </div>
+                        <span class="font-bold text-emerald-600">7,100 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-gray-500 text-lg">#2</span>
+                            <div>
+                                <p class="font-bold text-gray-800">Paws Care NGO</p>
+                                <p class="text-xs text-gray-500">98 Rescues</p>
+                            </div>
+                        </div>
+                        <span class="font-bold text-emerald-600">4,900 pts</span>
+                    </div>
+                </div>
+
+                <!-- Donors List -->
+                <div id="donorsList" class="space-y-3 hidden">
+                    <div class="flex justify-between items-center p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-amber-600 text-lg">#1</span>
+                            <div>
+                                <p class="font-bold text-gray-800">Rahul Sharma <span
+                                        class="text-xs bg-amber-200 text-amber-800 px-2 py-0.5 rounded">Gold Donor
+                                        Badge</span></p>
+                                <p class="text-xs text-gray-500">Contributed ₹45,000</p>
+                            </div>
+                        </div>
+                        <span class="font-bold text-emerald-600">4,500 pts</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SEARCH (NGOs & Products) -->
+        <section id="search" class="tab-content max-w-4xl mx-auto p-4 mt-8">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-xl font-bold text-gray-800 mb-3"><i
+                        class="fa-solid fa-magnifying-glass text-emerald-600"></i> Search NGOs & Products</h2>
+                <div class="flex gap-2 mb-4">
+                    <input type="text" placeholder="Search NGOs, pet food, first aid products..."
+                        class="w-full p-2 border rounded-lg">
+                    <button class="bg-emerald-600 text-white px-4 rounded-lg font-bold">Search</button>
+                </div>
+
+                <h3 class="font-bold text-gray-700 mt-4 mb-2">Verified Animal NGOs</h3>
+                <div class="p-3 border rounded-lg flex justify-between items-center mb-3">
+                    <div>
+                        <p class="font-bold text-gray-800">Hope For Strays Foundation</p>
+                        <p class="text-xs text-gray-500">New Delhi • Verified NGO</p>
+                    </div>
+                    <button onclick="switchTab('chat')"
+                        class="text-xs bg-emerald-100 text-emerald-700 font-bold px-3 py-1 rounded">Contact NGO</button>
+                </div>
+
+                <h3 class="font-bold text-gray-700 mt-6 mb-2">Rescue Products</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3 border rounded-lg text-center">
+                        <i class="fa-solid fa-kit-medical text-3xl text-red-500 my-2"></i>
+                        <p class="font-bold text-sm">Emergency Rescue Kit</p>
+                        <p class="text-xs text-emerald-600 font-bold">₹1,200</p>
+                    </div>
+                    <div class="p-3 border rounded-lg text-center">
+                        <i class="fa-solid fa-bowl-food text-3xl text-amber-500 my-2"></i>
+                        <p class="font-bold text-sm">Rescue Dog Food Pack</p>
+                        <p class="text-xs text-emerald-600 font-bold">₹850</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. WISHLIST / SAVED ANIMALS -->
+        <section id="wishlist" class="tab-content max-w-4xl mx-auto p-4 mt-8">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fa-solid fa-bookmark text-amber-500"></i>
+                    Wishlist / Saved Cases</h2>
+                <div class="p-4 border rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-gray-800">Rocky - Injured Dog</h4>
+                        <p class="text-xs text-gray-500">Jaipur • Treatment under progress</p>
+                    </div>
+                    <button onclick="switchTab('home')" class="text-emerald-600 text-sm font-bold">View Case</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CHAT SCREEN -->
+        <section id="chat" class="tab-content max-w-3xl mx-auto p-4 mt-8">
+            <div class="bg-white rounded-xl shadow-md h-[480px] flex flex-col">
+                <div class="p-3 border-b bg-emerald-600 text-white rounded-t-xl font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-circle-user"></i> Jaipur Animal Shield NGO
+                </div>
+                <div class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50">
+                    <div class="bg-white p-3 rounded-lg max-w-xs shadow-sm border">
+                        <p class="text-sm">Hello! We received your rescue alert for Sector 4.</p>
+                    </div>
+                    <div class="bg-emerald-100 p-3 rounded-lg max-w-xs ml-auto shadow-sm">
+                        <p class="text-sm text-emerald-900">Thank you! Has the ambulance dispatched?</p>
+                    </div>
+                </div>
+                <div class="p-3 border-t flex gap-2">
+                    <input type="text" placeholder="Type a message..." class="w-full p-2 border rounded-lg text-sm">
+                    <button class="bg-emerald-600 text-white px-4 rounded-lg font-bold"><i
+                            class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. USER PROFILE -->
+        <section id="profile" class="tab-content max-w-md mx-auto p-4 mt-8">
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div
+                    class="w-24 h-24 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-4xl mx-auto mb-3 font-bold">
+                    NS</div>
+                <h2 class="text-2xl font-bold text-gray-800">Harshil Darji</h2>
+                <p class="text-sm text-gray-500">Active Animal Volunteer</p>
+
+                <div class="flex justify-center gap-4 my-6">
+                    <button onclick="alert('Followers: 124')"
+                        class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-lg font-bold text-gray-700">
+                        124 <span class="font-normal text-xs block">Followers</span>
+                    </button>
+                    <button onclick="alert('Following: 45')"
+                        class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-lg font-bold text-gray-700">
+                        45 <span class="font-normal text-xs block">Following</span>
+                    </button>
+                </div>
+
+                <div class="border-t pt-4 text-left">
+                    <h3 class="font-bold text-gray-700 mb-2">My Impact Stats</h3>
+                    <div class="grid grid-cols-2 gap-3 text-center">
+                        <div class="p-3 bg-emerald-50 rounded-lg">
+                            <p class="text-xl font-bold text-emerald-600">12</p>
+                            <p class="text-xs text-gray-500">Cases Reported</p>
+                        </div>
+                        <div class="p-3 bg-amber-50 rounded-lg">
+                            <p class="text-xl font-bold text-amber-600">145</p>
+                            <p class="text-xs text-gray-500">Reward Points</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. SETTINGS PAGE -->
+        <section id="settings" class="tab-content max-w-md mx-auto p-4 mt-8">
+            <div class="bg-white p-6 rounded-xl shadow-md space-y-6">
+                <h2 class="text-xl font-bold text-gray-800 border-b pb-2"><i
+                        class="fa-solid fa-gear text-emerald-600"></i> Settings</h2>
+                <div class="space-y-3">
+                    <h3 class="font-bold text-gray-700">Change Password</h3>
+                    <input type="password" placeholder="Current Password" class="w-full p-2 border rounded-lg">
+                    <input type="password" placeholder="New Password" class="w-full p-2 border rounded-lg">
+                    <button onclick="alert('Password updated successfully!')"
+                        class="bg-emerald-600 text-white px-4 py-2 rounded-lg font-bold text-sm">Update
+                        Password</button>
+                </div>
+                <div class="border-t pt-4">
+                    <h3 class="font-bold text-gray-700 mb-2">About Life After Rescue</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        A global digital platform connecting public, NGOs, and shelters to track every rescued animal's
+                        entire recovery journey[cite: 1].
+                    </p>
+                    <p class="text-xs text-gray-400 mt-2">App Version 1.0.0</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t flex justify-around py-2 z-50">
+        <button onclick="switchTab('home')" class="text-gray-600 hover:text-emerald-600 text-center"><i
+                class="fa-solid fa-house block text-lg"></i><span class="text-[10px]">Home</span></button>
+        <button onclick="switchTab('leaderboard')" class="text-gray-600 hover:text-emerald-600 text-center"><i
+                class="fa-solid fa-trophy block text-lg"></i><span class="text-[10px]">Ranks</span></button>
+        <button onclick="switchTab('add-animal')" class="text-amber-500 hover:text-amber-600 text-center"><i
+                class="fa-solid fa-circle-plus block text-2xl"></i><span class="text-[10px]">Add</span></button>
+        <button onclick="switchTab('chat')" class="text-gray-600 hover:text-emerald-600 text-center"><i
+                class="fa-solid fa-comments block text-lg"></i><span class="text-[10px]">Chat</span></button>
+        <button onclick="switchTab('profile')" class="text-gray-600 hover:text-emerald-600 text-center"><i
+                class="fa-solid fa-user block text-lg"></i><span class="text-[10px]">Profile</span></button>
+    </nav>
+
+    <!-- APP NAVIGATION JAVASCRIPT -->
+    <script>
+        function switchTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function toggleAuth(type) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginBtn = document.getElementById('loginTabBtn');
+            const registerBtn = document.getElementById('registerTabBtn');
+
+            if (type === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                loginBtn.className = "w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600";
+                registerBtn.className = "w-1/2 py-2 text-center font-bold text-gray-500";
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                registerBtn.className = "w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600";
+                loginBtn.className = "w-1/2 py-2 text-center font-bold text-gray-500";
+            }
+        }
+
+        function switchLeaderboard(type) {
+            const rescuersList = document.getElementById('rescuersList');
+            const donorsList = document.getElementById('donorsList');
+            const rescuerTab = document.getElementById('rescuerTab');
+            const donorTab = document.getElementById('donorTab');
+
+            if (type === 'rescuers') {
+                rescuersList.classList.remove('hidden');
+                donorsList.classList.add('hidden');
+                rescuerTab.className = "w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600";
+                donorTab.className = "w-1/2 py-2 text-center font-bold text-gray-500";
+            } else {
+                rescuersList.classList.add('hidden');
+                donorsList.classList.remove('hidden');
+                donorTab.className = "w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600";
+                rescuerTab.className = "w-1/2 py-2 text-center font-bold text-gray-500";
+            }
+        }
+    </script>
+</body>
+
+</html>
