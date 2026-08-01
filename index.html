@@ -60,6 +60,12 @@
                 height: 120px;
             }
         }
+
+        @media (max-width: 768px) {
+            .hideButton {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -110,7 +116,7 @@
 
                 <!-- Mobile Hamburger Toggle Button -->
                 <button onclick="toggleMobileMenu()"
-                    class="xl:hidden p-2 rounded-lg text-emerald-950 hover:bg-stone-100 text-xl focus:outline-none">
+                    class="xl:hidden p-2 rounded-lg text-emerald-950 hover:bg-stone-100 text-xl focus:outline-none hideButton">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -938,6 +944,11 @@
             }
         }
 
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileDropdown');
+            menu.classList.toggle('hidden');
+        }
+
         function switchTab(tabId) {
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
@@ -956,7 +967,6 @@
                 }, 200);
             }
 
-            // Refresh AOS animations for newly active tab elements
             setTimeout(() => {
                 AOS.refresh();
             }, 100);
@@ -971,13 +981,13 @@
             if (type === 'login') {
                 loginForm.classList.remove('hidden');
                 registerForm.classList.add('hidden');
-                loginBtn.className = "w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600";
-                registerBtn.className = "w-1/2 py-2 text-center font-bold text-gray-500";
+                loginBtn.className = "w-1/2 py-2 text-center font-bold text-amber-600 border-b-2 border-amber-600";
+                registerBtn.className = "w-1/2 py-2 text-center font-bold text-stone-500";
             } else {
                 loginForm.classList.add('hidden');
                 registerForm.classList.remove('hidden');
-                registerBtn.className = "w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600";
-                loginBtn.className = "w-1/2 py-2 text-center font-bold text-gray-500";
+                registerBtn.className = "w-1/2 py-2 text-center font-bold text-amber-600 border-b-2 border-amber-600";
+                loginBtn.className = "w-1/2 py-2 text-center font-bold text-stone-500";
             }
         }
 
@@ -990,22 +1000,21 @@
             if (type === 'rescuers') {
                 rescuersList.classList.remove('hidden');
                 donorsList.classList.add('hidden');
-                rescuerTab.className = "w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600";
-                donorTab.className = "w-1/2 py-2 text-center font-bold text-gray-500";
+                rescuerTab.className = "w-1/2 py-2 text-center font-bold text-amber-600 border-b-2 border-amber-600";
+                donorTab.className = "w-1/2 py-2 text-center font-bold text-stone-500";
             } else {
                 rescuersList.classList.add('hidden');
                 donorsList.classList.remove('hidden');
-                donorTab.className = "w-1/2 py-2 text-center font-bold text-emerald-600 border-b-2 border-emerald-600";
-                rescuerTab.className = "w-1/2 py-2 text-center font-bold text-gray-500";
+                donorTab.className = "w-1/2 py-2 text-center font-bold text-amber-600 border-b-2 border-amber-600";
+                rescuerTab.className = "w-1/2 py-2 text-center font-bold text-stone-500";
             }
         }
 
         window.onload = function () {
             initMap();
-            // Initialize AOS library
             AOS.init({
                 duration: 800,
-                once: false, // Animates on both scroll down AND up
+                once: false,
                 mirror: true
             });
         };
